@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+menuconfig CYCLONEDDS_CDR
+        bool "CYCLONEDDS CDR support"
+        help
+          This option enables CYCLONEDDS CDR
+
+if CYCLONEDDS_CDR
+endif
+
