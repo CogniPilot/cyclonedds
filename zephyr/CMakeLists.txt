@@ -31,4 +31,24 @@ configure_file(${ZEPHYR_CURRENT_MODULE_DIR}/src/ddsrt/include/dds/features.h.in 
 configure_file(${ZEPHYR_CURRENT_MODULE_DIR}/src/ddsrt/include/dds/version.h.in include/dds/version.h)
 generate_export_header(cdr BASE_NAME DDS EXPORT_FILE_NAME include/dds/export.h)
 
+add_dependencies(app cdr)
+
+endif()
+
+if (CONFIG_CYCLONEDDS_IDLC)
+
+include(ExternalProject)
+
+ExternalProject_Add(idlc
+  SOURCE_DIR ${ZEPHYR_CURRENT_MODULE_DIR}
+  CONFIGURE_COMMAND ${CMAKE_COMMAND} ${ZEPHYR_CURRENT_MODULE_DIR}
+        -DBUILD_DDSPERF=OFF
+        -DBUILD_EXAMPLES=OFF
+	-DENABLE_ICEORYX=NO
+	-DCMAKE_BUILD_TYPE=Release
+	-DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+)
+
+add_dependencies(app idlc)
+
 endif()
