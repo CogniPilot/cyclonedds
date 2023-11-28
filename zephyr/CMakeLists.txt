@@ -47,6 +47,7 @@ ExternalProject_Add(idlc
         -DBUILD_EXAMPLES=OFF
 	-DENABLE_ICEORYX=NO
 	-DCMAKE_BUILD_TYPE=Release
+	-DCMAKE_C_FLAGS=-Wl,--disable-new-dtags
 	-DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}
 )
 
